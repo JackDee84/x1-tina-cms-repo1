@@ -1,0 +1,33 @@
+---
+
+import { getCollection,  type CollectionEntry } from "astro:content";
+import { render } from "astro:content";
+
+
+export async function getStaticPaths(){
+  
+  const cards = await getCollection('cardPost')
+  return cards.map((card: any)=> ({
+    params: {cardSlug: card.id},
+    props: card,  // Der Inhalt / Content
+  })
+)
+}
+
+type Props = CollectionEntry<'cardPost'>
+
+const card = Astro.props 
+
+
+if (!card) {
+  return Astro.redirect('/404');
+}
+
+
+const {Content} = await render(card)
+
+
+---
+
+
+<Content/>

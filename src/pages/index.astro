@@ -1,16 +1,34 @@
 ---
+import BasicLayout from "../layout/BasicLayout.astro"
 
+import { Image } from 'astro:assets';
+
+import { getCollection } from "astro:content";
+
+const cards = await getCollection('cardPost')
+
+console.log(cards)
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+
+<BasicLayout>
+
+	<div>
+				{
+					cards.map((card: any) => (
+					<div>
+						<h1>{card.data.title}</h1>
+						{card.data.cover?.src && (
+							<img src={card.data.cover.src} alt={card.data.coverAlt} />
+						 )}
+						 <p>{card.body}</p>
+					</div>
+				))
+			}
+		 </div>
+
+
+</BasicLayout>
+
+
+
