@@ -4,7 +4,6 @@ import BasicLayout from "../layout/BasicLayout.astro"
 import { Image } from 'astro:assets';
 
 import { getCollection } from "astro:content";
-
 const cards = await getCollection('cardPost')
 
 console.log(cards)
@@ -12,6 +11,10 @@ console.log(cards)
 
 
 <BasicLayout>
+
+	<!-- <pre> {JSON.stringify(cards, null, 2)} </pre> -->
+
+
 
 	<div>
 				{
@@ -25,8 +28,10 @@ console.log(cards)
 					</div>
 				))
 			}
+			
 		 </div>
 
+		 
 
 </BasicLayout>
 
