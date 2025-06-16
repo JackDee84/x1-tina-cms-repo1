@@ -3,12 +3,16 @@ import { config, fields, collection } from '@keystatic/core';
 
 export default config({
   storage: {
-    kind: 'local',
+    kind: 'cloud',
+  },
+  cloud: {
+    project: 'woodys/x1-tina-cms-repo1',
   },
   ui: {
     brand: {
       name: 'Woody'
     },
+
   },
   collections: {
     posts: collection({
