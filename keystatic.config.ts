@@ -25,10 +25,10 @@ export default config({
         title: fields.slug({ 
           name: { 
             label: 'Title' } }),
-          heroImage: fields.image({
-                      label: 'Hero Image',
-                      description: 'The image that will be displayed at the top of the blog post.',
-                  }),
+          // heroImage: fields.image({
+          //             label: 'Hero Image',
+          //             description: 'The image that will be displayed at the top of the blog post.',
+          //         }),
 
 
         content: fields.markdoc({ 

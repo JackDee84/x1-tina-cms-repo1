@@ -8,7 +8,7 @@ const cardPost = defineCollection ({
   schema: ({ image }) => z.object({
     title: z.string(),
     // description: z.string(),
-    heroImage: image().optional(),
+    //heroImage: image().optional(),
     // coverAlt: z.string().optional()
   })
 })
