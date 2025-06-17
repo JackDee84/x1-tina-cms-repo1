@@ -39,7 +39,6 @@ export default config({
           description: 'Alternativer Text für das Bild (wichtig für SEO und Barrierefreiheit).',
           validation: { isRequired: false },
         }),
-
         content: fields.markdoc({ 
           label: 'Content' }),
       },
