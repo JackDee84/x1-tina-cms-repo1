@@ -30,7 +30,6 @@ export default config({
           //             description: 'The image that will be displayed at the top of the blog post.',
           //         }),
 
-
         content: fields.markdoc({ 
           label: 'Content' }),
       },
