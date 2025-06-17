@@ -24,7 +24,23 @@ const cards = await getCollection('cardPost')
 						{card.data.cover?.src && (
 							<img src={card.data.cover.src} alt={card.data.coverAlt} />
 						 )}
+
+						 {card.data.heroImage && ( // Prüfen Sie, ob das heroImage-Feld Daten enthält
+            <Image
+              src={card.data.heroImage} 
+              alt={card.data.heroImageAlt || `Bild für ${card.data.title}`} 
+              width={800} 
+              height={450} 
+              loading="lazy" 
+              decoding="async"
+              class="card-image"
+            />
+          )}
+						 
+
+
 						 <p>{card.body}</p>
+
 					</div>
 				))
 			}

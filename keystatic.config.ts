@@ -25,10 +25,20 @@ export default config({
         title: fields.slug({ 
           name: { 
             label: 'Title' } }),
-          // heroImage: fields.image({
-          //             label: 'Hero Image',
-          //             description: 'The image that will be displayed at the top of the blog post.',
-          //         }),
+
+           // NEU: Hinzufügen des Bildfeldes
+        heroImage: fields.image({
+          label: 'Hero Image',
+          description: 'Das Hauptbild für den Post.',
+          directory: 'src/assets/images/posts', // <-- Speicherort für hochgeladene Bilder
+          publicPath: '../../assets/images/posts/', // <-- Der öffentliche Pfad, wie Astro ihn findet
+          validation: { isRequired: false }, // Optional: Bild muss nicht zwingend vorhanden sein
+        }),
+        heroImageAlt: fields.text({
+          label: 'Hero Image Alt Text',
+          description: 'Alternativer Text für das Bild (wichtig für SEO und Barrierefreiheit).',
+          validation: { isRequired: false },
+        }),
 
         content: fields.markdoc({ 
           label: 'Content' }),
