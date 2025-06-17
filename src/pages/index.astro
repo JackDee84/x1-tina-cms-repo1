@@ -1,10 +1,11 @@
 ---
 import BasicLayout from "../layout/BasicLayout.astro"
+import IndexContainer from '../components/indexContainer.astro'
 
-import { Image } from 'astro:assets';
+// import { Image } from 'astro:assets';
 
-import { getCollection } from "astro:content";
-const cards = await getCollection('cardPost')
+// import { getCollection } from "astro:content";
+// const cards = await getCollection('cardPost')
 
 //console.log(cards)
 ---
@@ -15,8 +16,14 @@ const cards = await getCollection('cardPost')
 	<!-- <pre> {JSON.stringify(cards, null, 2)} </pre> -->
 
 
+	<h1>MEINE HEADLESS PAGE</h1>
 
-	<div>
+
+	<IndexContainer/>
+
+
+
+	<!-- <div>
 				{
 					cards.map((card: any) => (
 					<div>
@@ -25,7 +32,7 @@ const cards = await getCollection('cardPost')
 							<img src={card.data.cover.src} alt={card.data.coverAlt} />
 						 )}
 
-						 {card.data.heroImage && ( // Prüfen Sie, ob das heroImage-Feld Daten enthält
+						 {card.data.heroImage && ( 
             <Image
               src={card.data.heroImage} 
               alt={card.data.heroImageAlt || `Bild für ${card.data.title}`} 
@@ -36,16 +43,14 @@ const cards = await getCollection('cardPost')
               class="card-image"
             />
           )}
-						 
-
-
+				
 						 <p>{card.body}</p>
 
 					</div>
 				))
 			}
 			
-		 </div>
+		 </div> -->
 
 		 
 

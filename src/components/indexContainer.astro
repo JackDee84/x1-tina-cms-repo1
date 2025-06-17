@@ -1,0 +1,75 @@
+---
+
+import BasicLayout from "../layout/BasicLayout.astro"
+
+import { Image } from 'astro:assets';
+
+import { getCollection } from "astro:content";
+const cards = await getCollection('cardPost')
+
+---
+
+
+
+	<div class="container">
+				{
+					cards.map((card: any) => (
+					<div class="box">
+						<h1>{card.data.title}</h1>
+						{card.data.cover?.src && (
+							<img src={card.data.cover.src} alt={card.data.coverAlt} />
+						 )}
+
+						 {card.data.heroImage && ( // Prüfen Sie, ob das heroImage-Feld Daten enthält
+            <Image
+              src={card.data.heroImage} 
+              alt={card.data.heroImageAlt || `Bild für ${card.data.title}`} 
+              width={800} 
+             
+              loading="lazy" 
+              decoding="async"
+              class="card-image"
+            />
+          )}
+				
+						 <p>{card.body}</p>
+
+					</div>
+				))
+			}
+			
+		 </div>
+
+
+
+<style>
+
+.container{
+  width: 100%;
+  height: auto;
+  background: rgb(1, 8, 60);
+  color: white;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.box{
+  width: 80%;
+  height: auto;
+  
+  background: rgb(44, 60, 184);
+  color: white;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+
+</style>
