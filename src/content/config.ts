@@ -12,7 +12,7 @@ const cardPost = defineCollection ({
     // coverAlt: z.string().optional()
     heroImage: image().optional(), // `image()` ist ein spezieller Zod-Typ von Astro, der das Bild verarbeitet
     heroImageAlt: z.string().optional(), // Für den Alt-Text
-    content: z.string(),
+    
   })
 })
 
