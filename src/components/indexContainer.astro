@@ -1,45 +1,49 @@
 ---
-
-import BasicLayout from "../layout/BasicLayout.astro"
-
+import BasicLayout from "../layout/BasicLayout.astro";
 import { Image } from 'astro:assets';
+import { getCollection, render } from "astro:content";
 
-import { getCollection } from "astro:content";
-const cards = await getCollection('cardPost')
+const cards = await getCollection('cardPost');
 
+const renderedCards = await Promise.all(
+  cards.map(async (card) => {
+    const { Content } = await render(card);
+    return {
+      ...card,
+      Content
+    };
+  })
+);
 ---
 
+<BasicLayout>
+  <div class="container">
+    {
+      renderedCards.map((card: any) => (
+        <div class="box">
+          <h1>{card.data.title}</h1>
 
+          {card.data.cover?.src && (
+            <img src={card.data.cover.src} alt={card.data.coverAlt} />
+          )}
 
-	<div class="container">
-				{
-					cards.map((card: any) => (
-					<div class="box">
-						<h1>{card.data.title}</h1>
-						{card.data.cover?.src && (
-							<img src={card.data.cover.src} alt={card.data.coverAlt} />
-						 )}
-
-						 {card.data.heroImage && ( // Prüfen Sie, ob das heroImage-Feld Daten enthält
+          {card.data.heroImage && (
             <Image
-              src={card.data.heroImage} 
-              alt={card.data.heroImageAlt || `Bild für ${card.data.title}`} 
-              width={800} 
-             
-              loading="lazy" 
+              src={card.data.heroImage}
+              alt={card.data.heroImageAlt || `Bild für ${card.data.title}`}
+              width={800}
+              loading="lazy"
               decoding="async"
               class="card-image"
             />
           )}
-				
-						 <p>{card.body}</p>
 
-					</div>
-				))
-			}
-			
-		 </div>
-
+          <card.Content />
+        </div>
+      ))
+    }
+  </div>
+</BasicLayout>
 
 
 <style>
