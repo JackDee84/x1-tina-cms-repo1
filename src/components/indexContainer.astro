@@ -16,7 +16,6 @@ const renderedCards = await Promise.all(
 );
 ---
 
-<BasicLayout>
   <div class="container">
     {
       renderedCards.map((card: any) => (
@@ -43,7 +42,7 @@ const renderedCards = await Promise.all(
       ))
     }
   </div>
-</BasicLayout>
+
 
 
 <style>
