@@ -13,8 +13,6 @@ const cardPost = defineCollection ({
     heroImage: image().optional(), // `image()` ist ein spezieller Zod-Typ von Astro, der das Bild verarbeitet
     heroImageAlt: z.string().optional(), // Für den Alt-Text
     
-    localVideoFile: z.string().optional(), // pathReference gibt den Pfad als String zurück
-    localVideoAlt: z.string().optional(),
   })
 })
 
