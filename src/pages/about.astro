@@ -1,18 +1,88 @@
 ---
 import BasicLayout from "../layout/BasicLayout.astro"
-import { Image } from 'astro:assets'; 
+
+import { Image } from 'astro:assets';
+
 import { getCollection } from "astro:content";
+const Posts  = await getCollection('posts')
 
-// const posts = await getCollection(''); 
+//console.log(cards)
 
-console.log();
+// Sortiere die Posts:
+// Wenn 'order' nicht definiert ist (optional), behandle es als einen hohen Wert,
+// damit Posts mit einer expliziten Nummer zuerst kommen.
+const sortedPosts = Posts.sort((a, b) => {
+  const orderA = a.data.order ?? Infinity; // Wenn order nicht gesetzt, sehr hohe Zahl
+  const orderB = b.data.order ?? Infinity; // Wenn order nicht gesetzt, sehr hohe Zahl
+  return orderA - orderB;
+});
+
 ---
-
 <BasicLayout>
+
+
+	<div class="container">
+				{
+					sortedPosts.map((card: any) => (
+					<div class="box">
+						<h1>{card.data.title}</h1>
+						{card.data.cover?.src && (
+							<img src={card.data.cover.src} alt={card.data.coverAlt} />
+						 )}
+
+						 {card.data.heroImage && ( // Prüfen Sie, ob das heroImage-Feld Daten enthält
+            <Image
+              src={card.data.heroImage} 
+              alt={card.data.heroImageAlt || `Bild für ${card.data.title}`} 
+              width={800} 
+             
+              loading="lazy" 
+              decoding="async"
+              class="card-image"
+            />
+          )}
+          {card.data.order !== undefined && <p>Sortier-Nr.: {card.data.order}</p>}
+
+         
+				
+					 <p>{card.body}</p>
+
+					</div>
+				))
+			}
+			
+		 </div>
 
 </BasicLayout>
 
+<style>
+
+.container{
+  width: 100%;
+  height: auto;
+  background: rgb(1, 8, 60);
+  color: white;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.box{
+  width: 80%;
+  height: auto;
+  
+  background: rgb(44, 60, 184);
+  color: white;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
 
 
-
-
+</style>
