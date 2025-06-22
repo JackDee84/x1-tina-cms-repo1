@@ -63,10 +63,11 @@ export default config({
         }),
       },
     }),
+ 
 
+    posts2: collection({ 
 
-    posts2: collection({
-
+      
       label: 'Posts2 ', //definiert den Namen der Sammlung
       slugField: 'title' ,
       path: 'src/content/posts/*',
