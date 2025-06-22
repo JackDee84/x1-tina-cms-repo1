@@ -42,8 +42,9 @@ const sortedPosts = allPosts.sort((a, b) => {
               class="card-image"
             />
           )}
+          {card.data.order !== undefined && <p>Sortier-Nr.: {card.data.order}</p>}
 
-          <p>{card.data.order}</p>
+         
 				
 					 <p>{card.body}</p>
 
