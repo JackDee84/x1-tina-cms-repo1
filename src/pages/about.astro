@@ -8,14 +8,6 @@ const Posts  = await getCollection('posts')
 
 //console.log(cards)
 
-// Sortiere die Posts:
-// Wenn 'order' nicht definiert ist (optional), behandle es als einen hohen Wert,
-// damit Posts mit einer expliziten Nummer zuerst kommen.
-const sortedPosts = Posts.sort((a, b) => {
-  const orderA = a.data.order ?? Infinity; // Wenn order nicht gesetzt, sehr hohe Zahl
-  const orderB = b.data.order ?? Infinity; // Wenn order nicht gesetzt, sehr hohe Zahl
-  return orderA - orderB;
-});
 
 ---
 <BasicLayout>
@@ -23,7 +15,7 @@ const sortedPosts = Posts.sort((a, b) => {
 
 	<div class="container">
 				{
-					sortedPosts.map((card: any) => (
+					Posts.map((card: any) => (
 					<div class="box">
 						<h1>{card.data.title}</h1>
 						{card.data.cover?.src && (
