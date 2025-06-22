@@ -44,6 +44,18 @@ export default config({
           label: 'Content', 
         }),
 
+
+        // NEU: Feld zum Sortieren
+        order: fields.number({
+          label: 'Sortierreihenfolge',
+          description: 'Eine Zahl zur Sortierung der Posts (niedrigere Zahl = früher angezeigt).',
+          validation: {
+            isRequired: false, // Optional, kann leer bleiben
+            min: 0, // Optionale Mindestzahl
+          },
+        }),
+
+        
         
       },
     }),
