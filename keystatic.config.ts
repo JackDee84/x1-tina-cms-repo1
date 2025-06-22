@@ -16,15 +16,21 @@ export default config({
   },
   collections: {
     posts: collection({
-      label: 'Posts',
-      slugField: 'title',
+
+      label: 'Posts ', //definiert den Namen der Sammlung
+      slugField: 'title' ,
+      
       path: 'src/content/cards/*',
       format: { contentField: 'content' },
+      
 
       schema: {
         title: fields.slug({ 
           name: { 
-            label: 'Title' } }),
+            label: 'Title' } 
+          
+          
+          }),
 
            // NEU: Hinzufügen des Bildfeldes
         heroImage: fields.image({
@@ -55,7 +61,7 @@ export default config({
           },
         }),
 
-        
+
         
       },
     }),
