@@ -5,9 +5,18 @@ import BasicLayout from "../layout/BasicLayout.astro"
 import { Image } from 'astro:assets';
 
 import { getCollection } from "astro:content";
-const cards = await getCollection('cardPost')
+const allPosts  = await getCollection('cardPost')
 
-console.log(cards)
+//console.log(cards)
+
+// Sortiere die Posts:
+// Wenn 'order' nicht definiert ist (optional), behandle es als einen hohen Wert,
+// damit Posts mit einer expliziten Nummer zuerst kommen.
+const sortedPosts = allPosts.sort((a, b) => {
+  const orderA = a.data.order ?? Infinity; // Wenn order nicht gesetzt, sehr hohe Zahl
+  const orderB = b.data.order ?? Infinity; // Wenn order nicht gesetzt, sehr hohe Zahl
+  return orderA - orderB;
+});
 
 ---
 
@@ -15,7 +24,7 @@ console.log(cards)
 
 	<div class="container">
 				{
-					cards.map((card: any) => (
+					sortedPosts.map((card: any) => (
 					<div class="box">
 						<h1>{card.data.title}</h1>
 						{card.data.cover?.src && (
@@ -33,6 +42,8 @@ console.log(cards)
               class="card-image"
             />
           )}
+
+          <p>{card.data.order}</p>
 				
 					 <p>{card.body}</p>
 
