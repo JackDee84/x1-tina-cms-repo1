@@ -41,13 +41,29 @@ export default config({
         }),
         
         content: fields.markdoc({ 
-          label: 'Content' }),
+          label: 'Content', 
+        }),
+
+                // NEU: Hinzufügen des Feldes für lokale Videodateien
+        localVideoFile: fields.pathReference({
+          label: 'Lokale Videodatei',
+          description: 'Wähle eine Videodatei aus dem `public/videos/` Ordner.',
+          pattern: 'public/videos/**/*.{mp4,webm,ogg}', // Beschränkt die Auswahl auf gängige Videoformate im public/videos/ Ordner
+          validation: { isRequired: false }, // Video ist optional
+        }),
+        // Optional: Ein Feld für den Alt-Text des lokalen Videos
+        localVideoAlt: fields.text({
+          label: 'Alt-Text für lokales Video',
+          description: 'Alternativer Text für das lokal eingebettete Video.',
+          validation: { isRequired: false },
+        }),
       },
     }),
   },
-  
+
 
 });
+
 
 
 
