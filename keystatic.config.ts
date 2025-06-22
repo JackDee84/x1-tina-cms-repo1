@@ -50,7 +50,7 @@ export default config({
         content: fields.markdoc({ 
           label: 'Content', 
         }),
-
+ 
 
         // NEU: Feld zum Sortieren
         order: fields.number({
